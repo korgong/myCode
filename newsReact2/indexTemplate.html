@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>微博</title>
+        <!--<link rel="stylesheet" href="/src/styles/weiboList.css"/>-->
+	</head>
+	<body>
+        <div class='content' style='display: none;'>
+            <dialog class='addDialog'>
+                <div class='wrapper compose'>
+                    <div class='compose-top-bar'>
+                        <a class='compose-btn-cancel' href='javascript:;'>取消</a>
+                        <span>发微博</span>
+                        <a class='compose-btn-send' href='javascript:;'>发送</a>
+                    </div>
+                    <div class='compose-cont'>
+                        <textarea name='' id='wbContent' placeholder='分享新鲜事...'></textarea>
+                    </div>
+                </div>
+            </dialog>
+        </div>
+        <div class="top-bar">
+            <a href="javascript:;" class="top-bar-btn-compose"></a>
+            <a href="javascript:;" class="top-bar-btn-refresh"></a>
+        </div>
+        <div class="pop-menu">
+            <div class="pop-menu-list">
+                <a href="javascript:;" class="pop-menu-item sure">删除</a>
+                <a href="javascript:;" class="pop-menu-item pop-menu-item-cancel">取消</a>
+            </div>
+        </div>
+        <div id="root"></div>
+	</body>
+</html>

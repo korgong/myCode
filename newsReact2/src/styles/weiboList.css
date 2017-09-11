@@ -1,0 +1,360 @@
+html {
+    color: #000;
+    background: #fff;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-size: 54px;
+}
+
+html * {
+    outline: none;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent
+}
+
+html, body {
+    font-family: sans-serif
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+    margin: 0;
+    padding: 0
+}
+
+input, select, textarea {
+    font-size: 100%
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+fieldset, img {
+    border: 0
+}
+
+abbr, acronym {
+    border: 0;
+    font-variant: normal
+}
+
+del {
+    text-decoration: line-through
+}
+
+address, caption, cite, code, dfn, em, th, var {
+    font-style: normal;
+    font-weight: 500
+}
+
+ol, ul {
+    list-style: none
+}
+
+caption, th {
+    text-align: left
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: 500
+}
+
+q:before, q:after {
+    content: ''
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sup {
+    top: -0.5em
+}
+
+sub {
+    bottom: -0.25em
+}
+
+a:hover, a:active {
+    text-decoration: none
+}
+
+ins, a {
+    text-decoration: none
+}
+
+body, input, select {
+    font: .4rem/1.5 "Microsoft Yahei", SimHei, SimSun
+}
+
+html, body {
+    min-height: 100%
+}
+
+body {
+    background-color: #f2f2f2;
+    color: #333
+}
+
+a {
+    color: #598abf
+}
+
+.wrapper {
+    font-size: .42667rem
+}
+
+.top-bar a, .wb-item-hd, .wb-item-more, .wb-item-details, .wb-btn-like, .compose-top-bar a, .compose-top-bar span, .compose-cont textarea {
+    padding: .26667rem
+}
+
+.top-bar {
+    background: #fff;
+    text-align: right
+}
+
+.top-bar a {
+    display: inline-block;
+    vertical-align: top;
+    width: .64rem;
+    height: .64rem
+}
+
+.top-bar-btn-compose {
+    background: url(./images/icon-compose.jpg) no-repeat center;
+    background-size: 60% 60%
+}
+
+.top-bar-btn-refresh {
+    background: url(./images/icon-refresh.jpg) no-repeat center;
+    background-size: 60% 60%
+}
+
+.loading {
+    display: none;
+    padding: .53333rem;
+    text-align: center
+}
+
+.loading span {
+    display: inline-block;
+    background: url(./images/loading.gif) no-repeat left center;
+    background-size: auto 100%;
+    height: 1.5em;
+    line-height: 1.5em;
+    color: #929292;
+    font-size: .34667rem;
+    text-indent: 2em
+}
+
+.loading.loading-more span {
+    width: 1.5em;
+    background-image: url(./images/loading-more.gif)
+}
+
+.wb-item {
+    background: #fff;
+    margin-top: .26667rem;
+    border-top: 2px solid #e6e6e6;
+    border-bottom: 2px solid #e6e6e6
+}
+
+.wb-item:first-child {
+    margin-top: 0
+}
+
+.wb-item.wb-item-tips {
+    padding: 4em 0;
+    text-align: center
+}
+
+.wb-item-hd {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative
+}
+
+.wb-item-avatar {
+    margin-right: .2rem
+}
+
+.wb-item-avatar img {
+    background: url(./pic/avatar.jpg);
+    display: block;
+    width: 64.8px;
+    height: 1.2rem;
+    border-radius: 1.2rem
+}
+
+@media (max-width:999px) {
+    .addDialog {
+        width: 300px;
+        height: 200px;
+        display: block;
+        position: absolute;
+        top: 300px;
+        color: gray;
+        z-index: 100;
+    }
+}
+
+@media (min-width:1000px) {
+    .addDialog {
+        width: 800px;
+        height: 400px;
+        display: block;
+        position: absolute;
+        top: 300px;
+        color: gray;
+        z-index: 100;
+    }
+}
+
+.wb-item-user-info {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-right: 3em
+}
+
+.wb-item-user-name {
+    font-size: .4rem
+}
+
+.wb-item-user-time {
+    color: #929292;
+    font-size: .37333rem
+}
+
+.wb-item-more {
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.wb-item-more:after {
+    content: '';
+    display: block;
+    width: .26667rem;
+    height: .26667rem;
+    border-left: 2px solid #929292;
+    border-bottom: 2px solid #929292;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg)
+}
+
+.wb-item-details {
+    padding-top: 0
+}
+
+.wb-item-footer {
+    border-top: 2px solid #dadada;
+    text-align: right
+}
+
+.wb-btn-like {
+    display: inline-block
+}
+
+.wb-btn-like i {
+    display: inline-block;
+    vertical-align: top;
+    background: url(./images/icon-like.jpg) no-repeat center;
+    background-size: contain;
+    width: .53333rem;
+    height: .53333rem
+}
+
+.wb-btn-like span {
+    color: #929292
+}
+
+.pop-menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    z-index: -2;
+    -webkit-transition: all .3s;
+    transition: all .3s
+}
+
+.pop-menu-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 6px solid #ff8200;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    -webkit-transition: transform .3s;
+    transition: transform .3s
+}
+
+.pop-menu-item {
+    display: block;
+    background: #f8f8f8;
+    line-height: 3;
+    color: #333;
+    text-align: center;
+    border-top: 2px solid #e7e7e7
+}
+
+.pop-menu-item:first-child {
+    border-top: 0
+}
+
+.pop-menu-item.pop-menu-item-cancel {
+    border-top-width: 8px;
+    color: #ff8200
+}
+
+.pop-menu.pop-menu-show {
+    opacity: 1;
+    z-index: 1
+}
+
+.pop-menu.pop-menu-show .pop-menu-list {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+}
+
+.compose-top-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background: #f9f9f9;
+    border-bottom: 2px solid #dbdbdb
+}
+
+.compose-btn-cancel {
+    color: #ff8200
+}
+
+.compose-btn-send {
+    color: #929292
+}
+
+.compose-cont textarea {
+    display: block;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    border-bottom: 2px solid #dbdbdb;
+    line-height: 1.5em;
+    /*min-height: 12em*/
+}
