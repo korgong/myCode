@@ -10,7 +10,7 @@ export default class WeiboList extends React.Component {
     }
 
     view() {
-        this.props.push({pathname:"/view"})
+        this.props.push("/view/1")
     }
 
     componentDidMount() {
@@ -42,7 +42,7 @@ export default class WeiboList extends React.Component {
                 </div>
                 <div className="wb-item-details">
                     <p className="wb-default-txt" onClick={this._view}>
-                        <Link to="/view">{item.content}</Link>
+                       {item.content}
                     </p>
                 </div>
                 <div className="wb-item-footer">

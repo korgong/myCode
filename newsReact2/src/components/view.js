@@ -20,7 +20,7 @@ export default class View extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps____view.js')
+        console.log('componentWillReceiveProps____view.js',nextProps)
     }
 
     render() {

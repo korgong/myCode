@@ -9,7 +9,7 @@ let runConnect = connect(
         weiboList:state.weiboList.items
     }),
     (dispatch)=>({
-        push,
+        push:(...args)=>dispatch(push(...args)),
         getWeiboList:(...args)=>dispatch(getweiboList(...args))
     }),
     (x, y, props) => {
