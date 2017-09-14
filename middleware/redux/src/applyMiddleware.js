@@ -26,8 +26,9 @@ export default function applyMiddleware(...middlewares) {
       getState: store.getState,
       dispatch: (...args) => dispatch(...args)
     }
+    //接受middlewareAPI,中间件函数变为两层为：next => action => {}
     chain = middlewares.map(middleware => middleware(middlewareAPI))
-    dispatch = compose(...chain)(store.dispatch)
+    dispatch = compose(...chain)(store.dispatch)   //compose组合中间件函数，接受store.dispatch变为一层：action => {}
 
     return {
       ...store,
