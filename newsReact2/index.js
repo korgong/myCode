@@ -4,11 +4,11 @@ import ReactDOM  from 'react-dom'
 import configureStore from './src/store/configureStore.dev'
 import { Provider } from 'react-redux'
 import DevTools from './src/containers/devTools'
-import getRoutes from './src/routes'
 import style from './src/styles/weiboList.css'
-const hashHistory = require('react-router').hashHistory
-const syncHistoryWithStore = require('react-router-redux/lib/sync').default
+import getRoutes from './src/routes'
 const store = configureStore()
+import { hashHistory } from 'react-router'
+import syncHistoryWithStore from 'react-router-redux/lib/sync'
 const history = syncHistoryWithStore(hashHistory, store)
 
 ReactDOM.render(
