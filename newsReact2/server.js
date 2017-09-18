@@ -4,6 +4,7 @@ require('babel-register')
 var webpack = require('webpack')
 var WebpackDevServer = require('webpack-dev-server')
 var config = require('./webpack.config.js')
+var opn = require('opn');
 
 new WebpackDevServer(webpack(config), {
   hot: true,
@@ -12,5 +13,6 @@ new WebpackDevServer(webpack(config), {
   if (err) {
     console.log(err)
   }
+  opn('http://localhost:8088/#/', {app: 'chrome'});
   console.log('Listening at localhost:8088/#/')
 })

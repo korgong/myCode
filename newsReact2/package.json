@@ -75,6 +75,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "copyfiles": "^1.2.0",
     "jquery": "^1.10.2",
+    "opn": "^5.1.0",
     "react-router-redux": "^4.0.8"
   }
 }
