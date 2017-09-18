@@ -4,7 +4,6 @@ import ReactDOM  from 'react-dom'
 import configureStore from './src/store/configureStore.dev'
 import { Provider } from 'react-redux'
 import DevTools from './src/containers/devTools'
-import style from './src/styles/weiboList.css'
 import getRoutes from './src/routes'
 const store = configureStore()
 import { hashHistory } from 'react-router'

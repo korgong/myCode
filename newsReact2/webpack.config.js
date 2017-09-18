@@ -1,13 +1,14 @@
 // extract-text-webpack-plugin插件，
 // 有了它就可以将你的样式提取到单独的css文件里，
 // 妈妈再也不用担心样式会被打包到js文件里了。
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin'),
-  path = require('path'),
-  ExtractTextPlugin = require('extract-text-webpack-plugin'),
-  webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
 var nodeModulesPath = './mode_modules';
 var production = process.env.NODE_ENV === 'production';
+
 var plugins = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'main',
@@ -34,7 +35,8 @@ module.exports = {
     'app': './index.js'
   },
   output: {
-    path: path.join(__dirname, 'unique'),
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/',
     filename: '[name].js'
   },
   plugins: [
