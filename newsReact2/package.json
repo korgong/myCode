@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack",
-    "copy": "copyfiles ./src/styles/** ./unique",
+    "copy": "copyfiles ./src/styles/** ./dist",
     "dist": "npm run copy & webpack",
     "start": "concurrently --kill-others \"npm run mock\"  \"node server.js\"",
     "test": "karma start ./karma.conf.js",
