@@ -37,10 +37,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: 'js/[name].js'
   },
   plugins: [
-    new ExtractTextPlugin('[name].css'), // 单独使用link标签加载css并设置路径，相对于output配置中的publicPath
+    new ExtractTextPlugin('css/[name].css'), // 单独使用link标签加载css并设置路径，相对于output配置中的publicPath
     new HtmlWebpackPlugin({
       filename: './index.html', // 生成的html存放路径，相对于path
       template:'./indexTemplate.html',
@@ -85,7 +85,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|jpeg|gif|ico|cur)$/,
-        loaders: ['url-loader']
+        loaders: ['url-loader?limit=8192&name=images/[hash:8].[name].[ext]']
       },
       {test: /\.css/, loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
       {test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader'},

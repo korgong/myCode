@@ -9,6 +9,7 @@ const store = configureStore()
 import { hashHistory } from 'react-router'
 import syncHistoryWithStore from 'react-router-redux/lib/sync'
 const history = syncHistoryWithStore(hashHistory, store)
+require('./src/styles/weiboList.css')
 
 ReactDOM.render(
   <Provider store={store}>
