@@ -1,7 +1,6 @@
 // extract-text-webpack-plugin插件，
 // 有了它就可以将你的样式提取到单独的css文件里，
 // 妈妈再也不用担心样式会被打包到js文件里了。
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -17,10 +16,7 @@ var plugins = [
     // Look for common dependencies in all children,
     minChunks: 2,
     // How many times a dependency must come up before being extracted
-  }),
-  new CopyWebpackPlugin([
-    {from: path.join(__dirname, '/src/styles'), to: path.join(__dirname, '/dist/src/styles')}
-  ])
+  })
 ];
 
 if (production) {
@@ -73,7 +69,8 @@ module.exports = {
         exclude: [nodeModulesPath]
       }
     ],
-    // css-loader用于解析，而style-loader则将解析后的样式嵌入js代码
+    // css-loader用于解析，使用类似@import和url（...）的方法实现require的功能
+    // 而style-loader则将解析后的样式嵌入js代码，放在html文件中的样式代码不需要loader解析
     loaders: [
       {
         test: /\.js$/,
@@ -87,7 +84,23 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif|ico|cur)$/,
         loaders: ['url-loader?limit=8192&name=images/[hash:8].[name].[ext]']
       },
-      {test: /\.css/, loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
+      {
+          test: /\.css$/,
+          loader: 'style-loader!css-loader?modules',
+          exclude: [
+              path.resolve(__dirname, 'node_modules')
+          ],
+          include: [
+              path.resolve(__dirname, 'src/components/dialog')
+          ]
+      },
+      {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract("style-loader", "css-loader"),
+          exclude: [
+              path.resolve(__dirname, 'src/components/dialog')
+          ]
+      },
       {test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader'},
       {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
       {test: /\.(eot|ttf|woff|woff2|svg)$/, loader: 'file?name=fonts/[name].[ext]'}

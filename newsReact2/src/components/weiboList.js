@@ -1,16 +1,35 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
+import GiftDialog from './dialog/dialog.js'
 
 export default class WeiboList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            DialogShow:false
         }
         this._view = this.view.bind(this)
+        this._handleConfirm = this.handleConfirm.bind(this)
+        this._handleCancel = this.handleCancel.bind(this)
+    }
+
+    handleConfirm() {
+        this.setState({
+            DialogShow: false,
+        })
+    }
+
+    handleCancel() {
+        this.setState({
+            DialogShow: false
+        })
     }
 
     view() {
-        this.props.push("/view/1")
+        this.setState({
+            DialogShow: true
+        })
+        // this.props.push("/view/1")
     }
 
     componentDidMount() {
@@ -57,6 +76,16 @@ export default class WeiboList extends React.Component {
         return (
             <div>
                 {weiboContent}
+                <GiftDialog
+                    DialogShow={this.state.DialogShow}
+                    title={'对话框标题'}
+                    ref='dialog'
+                    msg={'对话框内容'}
+                    type='confirm'
+                    width='400'
+                    height='200'
+                    handleConfirm={this._handleConfirm}
+                    handleCancel={this._handleCancel}/>
             </div>
         )
     }
