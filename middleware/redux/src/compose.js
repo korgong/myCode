@@ -21,7 +21,30 @@ export default function compose(...funcs) {
   return funcs.reduce((a, b) => (...args) => a(b(...args)))  //返回的是一个函数
 }
 
+/**
+ * 一个应用compose的简单例子
+ * @type {{className: {good: [number,number,number,number]}}}
+ */
+var obj = {className:{good:[1,2,3,4]}}
+function getClass(state) {
+    return state.className
+}
+function getRes(state) {
+    return state.good
+}
+var result = compose(getRes,getClass)(obj)
 
+/**
+ * 中间件伪代码
+ * 组合函数是先执行后面的函数，在执行前面的函数，第一个例子就是这样的
+ * 可是中间件函数却貌似先执行前面的thunk，然后再执行logger
+ * 其实也是先执行logger，参数是store.dispatch.然后返回一个函数，参数是action。
+ * 最后把这个函数当成next传递给前面的函数thunk
+ * thunk接受函数也是返回一个函数，这个函数的参数也是action。
+ * 在这个函数中，有f1返回的函数，我们可以先执行某个操作，再执行这个返回函数，
+ * 看起来f1反而后被执行，其实是f1返回的函数后被执行，而f1仍然是先被执行的
+ * @param action
+ */
 function f0(action) {
     console.log('f0')
 }
@@ -46,7 +69,7 @@ function f3(next) {
 // b为下一个数组的值
 
 
-// 两个函数复合的情况
+// 两个函数复合的情况，这里reduce函数里面f2表示a，f1表示b
 var dispatch = [f2,f1].reduce((a, b) => (...args) => a(b(...args)))(f0)
 dispatch(111)
 
