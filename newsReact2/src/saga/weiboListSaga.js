@@ -19,3 +19,18 @@ export function *getWeiboList() {
         yield put({type: actionConstants.GET_WEIBO_LIST_FAILURE, error})
     }
 }
+
+/**
+ * 获取年级的信息
+ * @export
+ */
+export function *getGrade() {
+    try {
+        let response = yield fetch('http://192.168.85.53:9090/api/v1/grade').then((res,rej)=>{
+            return res.json()
+        })
+        yield put({type: actionConstants.GET_GRADE_SUCCESS, response})
+    } catch (error) {
+        yield put({type: actionConstants.GET_GRADE_FAILURE, error})
+    }
+}

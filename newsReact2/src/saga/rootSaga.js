@@ -5,6 +5,7 @@ import * as WeiboListSaga from './weiboListSaga'
 
 export default function* rootSaga() {
     yield takeEvery(actionConstants.GET_WEIBO_LIST_REQUEST, mapPayload(WeiboListSaga.getWeiboList))
+    yield takeEvery(actionConstants.GET_GRADE_REQUEST, mapPayload(WeiboListSaga.getGrade))
 }
 
 /**

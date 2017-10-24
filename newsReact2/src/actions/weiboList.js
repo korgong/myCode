@@ -10,3 +10,14 @@ export function getweiboList() {
         payload: {}
     }
 }
+
+/**
+ * 获取整个年级的信息
+ * @export
+ */
+export function getGrade() {
+    return {
+        type: actionConstants.GET_GRADE_REQUEST,
+        payload: {}
+    }
+}

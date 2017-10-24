@@ -23,13 +23,22 @@ export default class GiftDialog extends React.Component {
     }
 
     getDialog() {
-        let header,footer,children
+        let header,footer,children,width,height,marginTop,marginLeft,containerStyle
+        width = this.props.width
+        height = this.props.height
         header = this.props.title
+        marginTop = -0.5*height
+        marginLeft = -0.5*width
+        containerStyle={width:width,height:height,marginTop: marginTop,marginLeft: marginLeft}
         // 对话框中间的内容
-        children =
-            <div className={styles.content} style={{height:'115px'}}>
-                <div className={styles.fontMiddle}>{this.props.msg}</div>
-            </div>
+        if (this.props.children) {
+            children = this.props.children
+        } else {
+            children =
+                <div className={styles.content} style={{height:'115px'}}>
+                    <div className={styles.fontMiddle}>{this.props.msg}</div>
+                </div>
+        }
         // 对话框底部按钮
         if(this.props.type == 'confirm') {
           footer =
@@ -47,7 +56,7 @@ export default class GiftDialog extends React.Component {
         return(
             <div>
                 <div className={styles.mask}/>
-                <div className={styles.contentArea}>
+                <div className={styles.contentArea} style={containerStyle}>
                     <div className={styles.header}>
                       <span style={{float: 'left', 'paddingLeft': '14px'}}>{header}</span>
                       <i className={styles.closeBtn} onClick={this._handleCancel}></i>
