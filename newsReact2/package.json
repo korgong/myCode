@@ -70,6 +70,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "react-addons-update": "0.14.2",
     "bootstrap": "^3.3.7",
     "copy-webpack-plugin": "^4.0.1",
     "copyfiles": "^1.2.0",

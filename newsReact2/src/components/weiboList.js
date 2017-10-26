@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import GiftDialog from './dialog/dialog.js'
+import update from 'react-addons-update'
 
 export default class WeiboList extends React.Component {
     constructor(props) {
@@ -17,40 +18,43 @@ export default class WeiboList extends React.Component {
     }
 
 
-    // 先判断学生所在的班级是否已勾选
-    // 如果已经勾选，就把这个班级取出来，修改这个班级的数据
-    // 如果没有勾选，返回一个学生为空的班级，把这个班级加入勾选的班级数组里面
-    // 如果班级学生为空，从勾选数组去掉这个班级，如果没有勾选，班级里面学生为空就不处理
+    // 如果已经勾选，修改这个班级的数据
+    // 如果没有勾选，返回一个学生为空的班级，修改这个班级的数据，最后把这个班级加入班级数组中
+    // 如果已经勾选,并且班级学生为空，从勾选数组去掉这个班级
     clickClassMate(classItem, classmate) {
-        let isClassClicked
-        let classItemId = classItem.id
         let checkedItems = this.state.checkedItems
-        let result = checkedItems.filter(ite=>ite.id === classItemId)
-        if(result.length ===1) {
-            isClassClicked = true
+        let clickedItemIndex,checkedClassmateIndex
+        for(var i=0;i<checkedItems.length;i++) {
+            if(checkedItems[i].id === classItem.id) {
+                clickedItemIndex = i
+            }
         }
-        if(isClassClicked) { // 之前已经勾选这个班级
-            let classItemStem = result[0]
-            let classInfo = classItemStem.classmates
-            let arr = classInfo.filter(info=>{
-                return info.id !== classmate.id
-            })
-            if(arr.length === classInfo.length) {
-                arr.push(classmate)
+        if(clickedItemIndex !== undefined) { // 已经勾选过该班级
+            // 修改这个班级的数据，先找到这个班级对应的学生信息之前是否已经勾选
+            for(var j=0;j<checkedItems[clickedItemIndex].classmates.length;j++) {
+                if(checkedItems[clickedItemIndex].classmates[j].id === classmate.id) {
+                    checkedClassmateIndex = j
+                }
             }
-            // 重新组装班级信息
-            // 已经勾选的班级学生为空
-            if(arr.length === 0) {
-                checkedItems = checkedItems.filter(checkedItem=>checkedItem.id !== classItemId)
-            }else {
-                classItem.classmates = arr
-                checkedItems = checkedItems.filter(checkedItem=>checkedItem.id !== classItemId)
-                checkedItems.push(classItem)
+            if(checkedClassmateIndex !== undefined) { // 之前已经勾选过该学生
+                checkedItems = update(checkedItems,{[clickedItemIndex]:{classmates:{$splice:[[checkedClassmateIndex,1]]}}})
+                if(checkedItems[clickedItemIndex].classmates.length === 0) {
+                    checkedItems = update(checkedItems,{$splice:[[clickedItemIndex,1]]})
+                }
+            }else { // 之前没有勾选过该学生
+                checkedItems = update(checkedItems,{[clickedItemIndex]:{classmates:{$push:[classmate]}}})
             }
-        }else { // 之前没有勾选这个班级
-            classItem.classmates = []
-            classItem.classmates.push(classmate)
-            checkedItems.push(classItem)
+        }else { // 没有勾选过该班级
+            let classItemTemp = {}
+            for(let k in classItem) {
+                if(k === 'classmates') {
+                    classItemTemp[k] = []
+                }else {
+                    classItemTemp[k] = classItem[k]
+                }
+            }
+            classItemTemp.classmates.push(classmate)
+            checkedItems = update(checkedItems,{$push:[classItemTemp]})
         }
         this.setState({checkedItems:checkedItems})
     }
@@ -163,7 +167,6 @@ export default class WeiboList extends React.Component {
     gradeDom(grade) {
         return grade.map(item => {
             let classSelect = this.isClassSelect(item)
-            let copyItem = $.extend(true,{},item)
             return <div className="grade">
                 <div className="classInfo">
                     {/*班级的信息*/}
@@ -177,7 +180,7 @@ export default class WeiboList extends React.Component {
                         let classmateSelect = this.isClassmateSelect(classmate)
                         return <div>
                             <input type="checkbox" checked={classmateSelect}
-                                   onClick={()=>this._clickClassMate(copyItem, classmate)}/>
+                                   onClick={()=>this._clickClassMate(item, classmate)}/>
                             <span>学生名字:{classmate.personName}</span>
                         </div>
                     })}
@@ -193,7 +196,7 @@ export default class WeiboList extends React.Component {
         // map函数中如果既没有使用箭头函数，也没有传入thisArg,那么this = undefined
         let weiboContent = this.weiboListDom(weiboList)
         let gradeContent = this.gradeDom(grade)
-        console.log('this.state.checkedItems', this.state.checkedItems)
+        // console.log('this.state.checkedItems', this.state.checkedItems)
 
         return (
             <div>
