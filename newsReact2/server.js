@@ -8,7 +8,8 @@ var opn = require('opn');
 
 new WebpackDevServer(webpack(config), {
   hot: true,
-  historyApiFallback: true
+  historyApiFallback: true,
+  disableHostCheck:true
 }).listen(8088, '0.0.0.0', function (err, result) {
   if (err) {
     console.log(err)
