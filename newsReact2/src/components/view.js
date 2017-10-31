@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
-import { push } from 'react-router-redux/lib/actions'
 
 export default class View extends React.Component {
     constructor(props) {
