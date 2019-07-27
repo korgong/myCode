@@ -2,12 +2,14 @@
 function() {} 或者 ()=>{} 这样的函数形式，为一层。中间件的函数签名有三层
 
 ```
+// next 表示下一个中间件
 ({ dispatch, getState }) => next => action => {
 
      // redux-thunk中action的代码
      if (typeof action === 'function') {
        return action(dispatch, getState, extraArgument);
      }
+     // notice: if the code of if return a result, the code below won't be executed
      return next(action);
 
      //redux-logger中action的伪代码
@@ -16,6 +18,19 @@ function() {} 或者 ()=>{} 这样的函数形式，为一层。中间件的函�
      console.log('after dispatch','action',action,'state',getState())
      return returnedValue;
  }
+```
+
+```
+// 使用中间件的用法
+const sagaMiddleware = createSagaMiddleware()
+const finalCreateStore = compose(
+  applyMiddleware(
+      sagaMiddleware,
+      routerMiddleware(hashHistory),
+      createLogger()
+  ),
+  window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument()
+)(createStore)
 ```
 
 ### 使用redux-thunk的一个例子
