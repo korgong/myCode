@@ -1,1 +1,0 @@
-##一个简单的react+redux项目，添加了redux开发工具##
